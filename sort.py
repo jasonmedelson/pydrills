@@ -142,5 +142,3 @@ def radix(unsorted):
     print("Sorted list with radix sort equals:\n",unsorted)
 radix([67, 45, 2, 13, 1, 998])
 radix([89, 23, 33, 45, 10, 12, 45, 45, 45])
-
-
