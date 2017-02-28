@@ -8,24 +8,26 @@ current_date = datetime.now().timetuple()
 current_date = (current_date[2],current_date[3],current_date[4],current_date[5])
 #day =0,hour =1,min=2,sec=3
 current_time = (current_date[1]*10000)+(current_date[2]*100)+(current_date[3])
+#current time in single int
 for name in files:
     text = name
     stat = os.path.getmtime(text)
-    times = datetime.fromtimestamp(stat).strftime('%Y-%m-%d %H:%M:%S')
+    times = datetime.fromtimestamp(stat).strftime('%Y-%m-%d %H:%M:%S') # format time
     day = int(times[8:10])
     hour = int(times[11:13])
     minute = int(times[14:16])
     sec = int(times[17:19])
     mod_time = (hour*10000)+(minute*100)+(sec)
+    #modified time in single int
     if (day == (current_date[0]-1)):
         if (current_time < mod_time):
             shutil.copy(name,'C:\Users\Jason\Desktop\Folder B')
-            print name
+            print ("{}, has been copied".format(name))
     elif(day == current_date[0]):
         shutil.copy(name,'C:\Users\Jason\Desktop\Folder B')
-        print name
+        print ("{}, has been copied".format(name))
     else:
-        print ("file not recent enough")
+        print ("{}, file not recent enough".format(name))
 
 
 
