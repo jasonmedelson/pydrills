@@ -48,7 +48,7 @@ def backup(self):
             times = datetime.fromtimestamp(stat).strftime('%Y-%m-%d %H:%M:%S') # format time
             mod_date = ((int(times[:4])*10000)+(int(times[5:7])*100)+(int(times[8:10])))#year*month*day
             mod_time = ((int(times[11:13])*10000)+(int(times[14:16])*100)+(int(times[17:])))#hour.min.second
-            anyfilesmoved = false
+            anyfilesmoved = False
             if (mod_date > last_date): #larger mod date means file changed since last backup 
                     shutil.copy(name,dest)
                     print ("{}, has been copied".format(name))
@@ -64,7 +64,7 @@ def backup(self):
                 print ("{}, file has not changed since last backup".format(name))#earlier day
         #print(backup_date_str)
         #print(backup_date_int)
-        if (anyfilesed):
+        if (anyfilesmoved):
             messagebox.showinfo('Transfer Completed', 'Success!')
         else:
             messagebox.showinfo('Nothing To Transfer', 'No files have been created or modified'
