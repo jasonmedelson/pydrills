@@ -38,7 +38,7 @@ def backup(self):
         if (len(last_backup)==14):#if month is oct,nov,dec, length will be 14
             last_date = int(last_backup[:8])
             last_time = int(last_backup[8:])
-        elif(len(last_backup)==13):#all othe month length is 13
+        elif(len(last_backup)==13):#all other months length is 13
             last_date = int(last_backup[:7])
             last_time = int(last_backup[7:])
         #current time in single int
@@ -48,19 +48,27 @@ def backup(self):
             times = datetime.fromtimestamp(stat).strftime('%Y-%m-%d %H:%M:%S') # format time
             mod_date = ((int(times[:4])*10000)+(int(times[5:7])*100)+(int(times[8:10])))#year*month*day
             mod_time = ((int(times[11:13])*10000)+(int(times[14:16])*100)+(int(times[17:])))#hour.min.second
+            anyfilesmoved = false
             if (mod_date > last_date): #larger mod date means file changed since last backup 
                     shutil.copy(name,dest)
                     print ("{}, has been copied".format(name))
+                    anyfilesmoved = True
             elif(mod_date == last_date):#if same day, need to compare time
                 if(mod_time>last_time):#change happend same day as back up but later time
                     shutil.copy(name,dest)
                     print ("{}, has been copied".format(name))
+                    anyfilesmoved = True
                 else:
                     print ("{}, file has not changed since last backup".format(name))#same day, but before
             else:
                 print ("{}, file has not changed since last backup".format(name))#earlier day
-        print(backup_date_str)
-        print(backup_date_int)
+        #print(backup_date_str)
+        #print(backup_date_int)
+        if (anyfilesed):
+            messagebox.showinfo('Transfer Completed', 'Success!')
+        else:
+            messagebox.showinfo('Nothing To Transfer', 'No files have been created or modified'
+                                        '\nsince the last file backup.')
         update_backup(backup_date_str,backup_date_int)
         display_date(self)
 

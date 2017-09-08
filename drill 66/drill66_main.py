@@ -17,7 +17,7 @@ class ParentWindow(Frame):
         self.master = master
         self.master.minsize(700,220) #(width, height)
         self.master.maxsize(700,220)
-        self.master.title("Drill 65")
+        self.master.title("Drill 66")
         self.master.configure(bg="#F0F0F0")
         arg = self.master
         
